@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hikma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        async function getRandomVerse() {
+            const response = await fetch('quran_fr_only.json');  // Ton fichier JSON
+            const data = await response.json();
+
+            // Sélectionner une sourate et un verset aléatoire
+            const randomSura = data[Math.floor(Math.random() * data.length)];
+            const randomVerse = randomSura.verses[Math.floor(Math.random() * randomSura.verses.length)];
+
+            // Afficher le verset en français et en arabe
+            document.getElementById('sura-name').innerText = randomSura.name;
+            document.getElementById('verse-number').innerText = randomVerse.id;  // ID du verset
+            document.getElementById('verse-text-fr').innerText = randomVerse.translation;  // Verset en français
+            document.getElementById('verse-text-ar').innerText = randomVerse.text;  // Verset en arabe
+        }
+
+        window.onload = getRandomVerse;
+    </script>
+</head>
+<body>
+    <h1>Hikma</h1>
+    <p><strong>Sourate:</strong> <span id="sura-name"></span></p>
+    <p><strong>Verset <span id="verse-number"></span>:</strong> <span id="verse-text-fr"></span></p>
+    <p class="arabic"><span id="verse-text-ar"></span></p>
+    <footer>
+        <p>Généré aléatoirement depuis le Coran. <a href="#">Rafraîchir</a> pour un autre verset.</p>
+    </footer>
+</body>
+</html>
