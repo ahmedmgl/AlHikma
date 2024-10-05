@@ -8,30 +8,34 @@
     <link rel="stylesheet" href="./style.css">
     <script>
         async function getRandomVerse() {
-            const response = await fetch('quran_fr_only.json');  // Ton fichier JSON
+            const response = await fetch('quran_fr_only.json');
             const data = await response.json();
 
-            // Sélectionner une sourate et un verset aléatoire
             const randomSura = data[Math.floor(Math.random() * data.length)];
             const randomVerse = randomSura.verses[Math.floor(Math.random() * randomSura.verses.length)];
 
-            // Afficher le verset en français et en arabe
-            document.getElementById('sura-name').innerText = randomSura.name;
-            document.getElementById('verse-number').innerText = randomVerse.id;  // ID du verset
-            document.getElementById('verse-text-fr').innerText = randomVerse.translation;  // Verset en français
-            document.getElementById('verse-text-ar').innerText = randomVerse.text;  // Verset en arabe
+            if (randomSura && randomVerse) {
+                document.getElementById('sura-name').innerText = randomSura.name;
+                document.getElementById('verse-number').innerText = randomVerse.id;
+                document.getElementById('verse-text-ar').innerText = randomVerse.text;
+                document.getElementById('verse-text-fr').innerText = randomVerse.translation;
+            }
         }
 
         window.onload = getRandomVerse;
     </script>
 </head>
 <body>
-    <h1>Hikma</h1>
-    <p><strong>Sourate:</strong> <span id="sura-name"></span></p>
-    <p><strong>Verset <span id="verse-number"></span>:</strong> <span id="verse-text-fr"></span></p>
-    <p class="arabic"><span id="verse-text-ar"></span></p>
-    <footer>
-        <p>Généré aléatoirement depuis le Coran. <a href="#">Rafraîchir</a> pour un autre verset.</p>
-    </footer>
+    <div id="content">
+        <div class="verse-box">
+            <div class="verse-number" id="verse-number">149</div>
+            <div class="verse-text-ar" id="verse-text-ar">قُلْ فَلِلَّهِ ٱلْحُجَّةُ ٱلْبَـٰلِغَةُ ۖ</div>
+            <div class="verse-text-fr" id="verse-text-fr">Dis: «L'argument décisif appartient à Allah...</div>
+        </div>
+        
+        <footer>
+            <p>Généré aléatoirement depuis le Coran. <a href="#">Rafraîchir</a> pour un autre verset.</p>
+        </footer>
+    </div>
 </body>
 </html>
