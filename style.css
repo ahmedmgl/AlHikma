@@ -1,3 +1,13 @@
+/* Style de base pour le site */
+body {
+    background-color: #000000; /* Fond noir */
+    color: #ffffff;
+    font-family: 'Amiri', serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
 /* Conteneur du verset */
 .verse-box {
     background-color: #1d1d1d;
@@ -21,6 +31,13 @@
     margin-bottom: 10px;
 }
 
+/* Style pour le nom de la sourate */
+.sura-name {
+    font-size: 1.8em;
+    color: #00bfff;
+    margin-bottom: 20px;
+}
+
 /* Style pour le texte en arabe */
 .verse-text-ar {
     font-family: 'Amiri', serif;
@@ -35,4 +52,21 @@
     font-size: 1.4em;
     color: #cccccc;
     line-height: 1.8em;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+footer a {
+    color: #03dac6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ff6f61;
 }
