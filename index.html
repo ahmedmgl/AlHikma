@@ -12,11 +12,11 @@
                 const response = await fetch('quran_fr_only.json');
                 const data = await response.json();
 
-                // Sélectionner une sourate et un verset au hasard
+                // Sélection aléatoire d'une sourate et d'un verset
                 const randomSura = data[Math.floor(Math.random() * data.length)];
                 const randomVerse = randomSura.verses[Math.floor(Math.random() * randomSura.verses.length)];
 
-                // Afficher le nom de la sourate et le verset
+                // Affichage du nom de la sourate et du verset
                 document.getElementById('sura-name').innerText = randomSura.name;
                 document.getElementById('verse-number').innerText = randomVerse.id;
                 document.getElementById('verse-text-ar').innerText = randomVerse.text;
@@ -30,13 +30,16 @@
     </script>
 </head>
 <body>
+    <!-- Contenu principal avec le verset et la sourate -->
     <div id="content">
         <div class="verse-box">
             <div class="verse-number" id="verse-number"></div>
+            <div class="sura-name" id="sura-name"></div>
             <div class="verse-text-ar" id="verse-text-ar"></div>
             <div class="verse-text-fr" id="verse-text-fr"></div>
         </div>
         
+        <!-- Footer avec le lien pour rafraîchir -->
         <footer>
             <p>Généré aléatoirement depuis le Coran. <a href="#" onclick="getRandomVerse()">Rafraîchir</a> pour un autre verset.</p>
         </footer>
