@@ -8,17 +8,21 @@
     <link rel="stylesheet" href="./style.css">
     <script>
         async function getRandomVerse() {
-            const response = await fetch('quran_fr_only.json');
-            const data = await response.json();
+            try {
+                const response = await fetch('quran_fr_only.json');
+                const data = await response.json();
 
-            const randomSura = data[Math.floor(Math.random() * data.length)];
-            const randomVerse = randomSura.verses[Math.floor(Math.random() * randomSura.verses.length)];
+                // Sélectionner une sourate et un verset au hasard
+                const randomSura = data[Math.floor(Math.random() * data.length)];
+                const randomVerse = randomSura.verses[Math.floor(Math.random() * randomSura.verses.length)];
 
-            if (randomSura && randomVerse) {
+                // Afficher le nom de la sourate et le verset
                 document.getElementById('sura-name').innerText = randomSura.name;
                 document.getElementById('verse-number').innerText = randomVerse.id;
                 document.getElementById('verse-text-ar').innerText = randomVerse.text;
                 document.getElementById('verse-text-fr').innerText = randomVerse.translation;
+            } catch (error) {
+                console.error("Erreur lors du chargement des versets", error);
             }
         }
 
@@ -28,13 +32,13 @@
 <body>
     <div id="content">
         <div class="verse-box">
-            <div class="verse-number" id="verse-number">149</div>
-            <div class="verse-text-ar" id="verse-text-ar">قُلْ فَلِلَّهِ ٱلْحُجَّةُ ٱلْبَـٰلِغَةُ ۖ</div>
-            <div class="verse-text-fr" id="verse-text-fr">Dis: «L'argument décisif appartient à Allah...</div>
+            <div class="verse-number" id="verse-number"></div>
+            <div class="verse-text-ar" id="verse-text-ar"></div>
+            <div class="verse-text-fr" id="verse-text-fr"></div>
         </div>
         
         <footer>
-            <p>Généré aléatoirement depuis le Coran. <a href="#">Rafraîchir</a> pour un autre verset.</p>
+            <p>Généré aléatoirement depuis le Coran. <a href="#" onclick="getRandomVerse()">Rafraîchir</a> pour un autre verset.</p>
         </footer>
     </div>
 </body>
