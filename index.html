@@ -25,6 +25,22 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        /* Style pour le bouton de partage */
+        #share-twitter-btn {
+            background-color: #1DA1F2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        #share-twitter-btn:hover {
+            background-color: #0d8cd0;
+        }
     </style>
 </head>
 <body>
@@ -39,6 +55,10 @@
             <div class="verse-text-ar" id="verse-text-ar"></div>
             <div class="verse-text-fr" id="verse-text-fr"></div>
         </div>
+
+        <!-- Bouton de partage sur Twitter -->
+        <button id="share-twitter-btn">Partager sur Twitter</button>
+
         <footer>
             <p>Généré aléatoirement depuis <strong>Le Saint Quran</strong>. <a href="#" onclick="getRandomVerse()">Rafraîchir</a> pour un autre verset.</p>
         </footer>
@@ -68,6 +88,14 @@
                 setTimeout(() => {
                     verseBox.classList.add('show');
                 }, 100); // Délai pour s'assurer que le retrait de la classe fonctionne
+
+                // Générer le lien de partage Twitter
+                const tweetText = `Sourate: ${randomSura.name}, Verset ${randomVerse.id} - "${randomVerse.translation}"`;
+                const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+                document.getElementById('share-twitter-btn').onclick = function() {
+                    window.open(twitterUrl, '_blank');
+                };
+
             } catch (error) {
                 console.error("Erreur lors du chargement des versets", error);
             }
