@@ -89,9 +89,9 @@
                     verseBox.classList.add('show');
                 }, 100); // Délai pour s'assurer que le retrait de la classe fonctionne
 
-                // Générer le lien de partage Twitter
+                // Générer le lien de partage Twitter avec l'URL du site
                 const tweetText = `Sourate: ${randomSura.name}, Verset ${randomVerse.id} - "${randomVerse.translation}"`;
-                const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+                const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&https://ahmedmgl.github.io/AlHikma/`;
                 document.getElementById('share-twitter-btn').onclick = function() {
                     window.open(twitterUrl, '_blank');
                 };
